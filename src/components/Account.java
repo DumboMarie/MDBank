@@ -12,6 +12,15 @@ public abstract class Account {
 	public Account(String label, Client client) {
 		this.label = label;
 		this.client = client;
+		this.balance = 0;
+		accountNB++;
+		accountID = String.valueOf(accountNB);
+	}
+	
+	public Account(String label, Client client, double balance) {
+		this.label = label;
+		this.client = client;
+		this.balance = balance;
 		accountNB++;
 		accountID = String.valueOf(accountNB);
 	}
@@ -28,8 +37,8 @@ public abstract class Account {
 		return balance;
 	}
 
-	public void setBalance(double amount) {
-		this.balance = balance;
+	public void setBalance(Flow flow) {
+		this.balance = balance - flow.getAmount();
 	}
 
 	public String getAccountID() {
