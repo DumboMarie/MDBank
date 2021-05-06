@@ -2,6 +2,7 @@
 package components;
 
 public abstract class Account {
+
 	protected String label;
 	protected double balance;
 	protected String accountID;
