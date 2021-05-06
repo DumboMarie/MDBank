@@ -1,18 +1,18 @@
 // 1.1.1 Creation of the client class
-
 package components;
+
 
 public class Client {
 	private String name;
 	private String firstName;
-	private int clientID;
+	private String clientID;
 	static int clientNB = 0;
 	
-	private void Client(String name, String firstName) {
+	public Client(String name, String firstName) {
 		this.name = name;
 		this.firstName = firstName;
 		clientNB++;
-		clientID = clientNB;
+		clientID = String.valueOf(clientNB);
 	}
 
 	public String getName() {
@@ -31,11 +31,11 @@ public class Client {
 		this.firstName = firstName;
 	}
 
-	public int getClientID() {
+	public String getClientID() {
 		return clientID;
 	}
 
-	public void setClientID(int clientID) {
+	public void setClientID(String clientID) {
 		this.clientID = clientID;
 	}
 
@@ -49,7 +49,7 @@ public class Client {
 	
 	 @Override
 	    public String toString() {
-	        return String.format("Name : %s %s /n ID : %d", name, firstName, clientID);
+	        return String.format("Name : %s %s %n ID : %s", name, firstName, clientID);
 	    }
 
 }
