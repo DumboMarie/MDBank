@@ -1,7 +1,8 @@
 // 1.3.2 Creation of the Flow class
 package components;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public abstract class Flow {
 	private String comment;
@@ -10,21 +11,21 @@ public abstract class Flow {
 	private double amount;
 	private String accountID;
 	private boolean effect;
-	private Date date;
+	private LocalDate date;
 	
 	
-	public Flow(String accountID,Date date) {
+	public Flow(double amount, String accountID,LocalDate localDate) {
 		this.comment = "";
-		this.amount = 0;
+		this.amount = amount;
 		this.accountID = accountID;
 		this.effect = true;
-		this.date = date;
+		this.date = localDate;
 		
 		flowNB++;
 		flowID = String.valueOf(flowNB);
 	}
 	
-	public Flow(String comment, double amount, String accountID,boolean effect,Date date) {
+	public Flow(String comment, double amount, String accountID,boolean effect,LocalDate date) {
 		this.comment = comment;
 		this.amount = amount;
 		this.accountID = accountID;
@@ -59,7 +60,7 @@ public abstract class Flow {
 		this.effect = effect;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -87,7 +88,7 @@ public abstract class Flow {
 		return effect;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 

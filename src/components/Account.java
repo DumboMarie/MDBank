@@ -1,6 +1,8 @@
 // 1.2.1 Creation of the account class
 package components;
 
+import java.time.LocalDate;
+
 public abstract class Account {
 
 	protected String label;
@@ -38,7 +40,20 @@ public abstract class Account {
 	}
 
 	public void setBalance(Flow flow) {
-		this.balance = balance - flow.getAmount();
+		switch (flow.getClass().getSimpleName()) {
+		case "Credit":
+			this.balance += flow.getAmount();
+			break;
+		case "Debit":
+			this.balance -= flow.getAmount();
+			break;
+		case "Transfert":
+			this.balance += flow.getAmount();
+			setBalance(new Debit(flow.getAmount(), ((Transfert) flow).transfertAccountID, flow.getDate()));
+			break;
+		default:
+			break;
+		}
 	}
 
 	public String getAccountID() {
@@ -67,8 +82,8 @@ public abstract class Account {
 	
 	 @Override
 	    public String toString() {
-	        return String.format("Account n°%s %nowner : %s %s %n %s : balance : %s", 
-	        		accountID, client.getName(), client.getFirstName(), label, balance);
+	        return String.format("%s account n°%s %nowner : %s %s %nbalance : %s", 
+	        		label,accountID, client.getName(), client.getFirstName(), balance);
 	    }
 	
 	
